@@ -1,0 +1,70 @@
+name: Backend Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'backend/**'
+      - 'requirements.txt'
+      - '.github/workflows/**'
+  pull_request:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'backend/**'
+      - 'requirements.txt'
+      - '.github/workflows/**'
+
+jobs:
+  build:
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        python-version: ["3.10"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Create virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+
+      - name: Install dependencies
+        run: |
+          source venv/bin/activate
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install pylint
+
+      - name: Fix import path for pylint
+        run: |
+          source venv/bin/activate
+          export PYTHONPATH="${PYTHONPATH}:."
+          cd backend
+          pylint *.py
+
+      - name: Run Pytest
+        run: |
+          source venv/bin/activate
+          export PYTHONPATH="${PYTHONPATH}:.:backend"
+          pytest tests/ -v --tb=short
+
+      - name: Print debugging information
+        run: |
+          echo "Python Version: $(python --version)"
+          echo "Working Directory: $(pwd)"
+          echo "Contents of Working Directory:"
+          ls -l
+          echo "Contents of backend folder:"
+          ls -l backend/
+      

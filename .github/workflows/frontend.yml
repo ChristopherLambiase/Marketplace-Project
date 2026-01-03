@@ -1,0 +1,58 @@
+name: Frontend Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'frontend/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/**'
+  pull_request:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'frontend/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/**'
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Lint code
+        working-directory: ./frontend
+        run: npm run lint --if-present
+
+      - name: Run tests
+        working-directory: ./frontend
+        run: npm test --if-present -- --watchAll=false
+
+      - name: Build frontend
+        working-directory: ./frontend
+        run: npm run build --if-present
+
+      - name: Print debugging info
+        run: |
+          echo "Node Version: $(node -v)"
+          echo "NPM Version: $(npm -v)"
+          echo "Current Directory: $(pwd)"
+          echo "Frontend Folder Contents:"
+          ls -l frontend

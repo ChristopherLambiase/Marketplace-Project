@@ -1,0 +1,96 @@
+.home-container {
+  margin: 0;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+.home-title {
+  font-size: 2.5rem;
+}
+
+.listings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.error-message {
+  background: rgba(255, 99, 132, 0.08);
+  color: #b91c1c;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(255,99,132,0.08);
+}
+
+.loading-message {
+  color: #2563eb;
+  font-weight: 500;
+  margin: 1rem 0;
+}
+
+.no-listings-message {
+  color: #555;
+  font-size: 1.1rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.menu-btn, .back-btn, .side-menu-item {
+  margin-top: 0.7rem;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 260px;
+  background: rgba(255,255,255,0.7);
+  box-shadow: 2px 0 24px rgba(59,130,246,0.08);
+  backdrop-filter: blur(12px);
+  transform: translateX(-100%);
+  transition: transform 0.25s cubic-bezier(.4,0,.2,1);
+  z-index: 20;
+}
+
+.side-menu.open {
+  transform: translateX(0);
+}
+
+.side-menu-content {
+  padding: 2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.side-menu-title {
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+}
+
+.side-menu-item {
+  color: #222;
+  border: none;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  box-shadow: 0 1px 4px rgba(59,130,246,0.06);
+  cursor: pointer;
+}
+
+.side-menu-item:hover {
+  background: rgba(59,130,246,0.18);
+  color: #2563eb;
+}
+
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.18);
+  z-index: 15;
+}

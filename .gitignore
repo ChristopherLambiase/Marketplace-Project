@@ -1,0 +1,29 @@
+# SQLite database files
+*.db
+*.sqlite
+*.sqlite3
+*.db3
+
+# Specific database files
+marketplace.db
+backend/marketplace.db
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+env/
+.env
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
