@@ -3,10 +3,10 @@
 ## Link to our Trello board: https://trello.com/invite/b/68d1a841b6cfcf676caacc5c/ATTIcedbbca74cc4ec14b8a556ae283879566F446268/kanban-board-group-project
 ## Link to our Figma: https://www.figma.com/design/4ootrp1KnmXadh6ZOWYpqk/Group-Project?node-id=0-1&t=Siv9Bbf4Ny0oeADz-1
 
-# Sahana Ganesh sag17029
-# Christopher Lambiase cjl22019
-# Joe Buchek job22007
-# Lakshita Ganesh Kumar LGK21002
+# Sahana Ganesh
+# Christopher Lambiase
+# Joe Buchek
+# Lakshita Ganesh Kumar
 
 # RUNNING THE BACKEND LOCALLY
 Open a new terminal
